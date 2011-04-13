@@ -1,0 +1,44 @@
+/*
+ * Copyright (c) 2011 Roberto Tyley
+ *
+ * This file is part of 'android-viewholder-listviews'.
+ *
+ * android-viewholder-listviews is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * android-viewholder-listviews is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+package com.madgag.android.listviews;
+
+
+import android.content.Context;
+import android.view.LayoutInflater;
+import android.view.View;
+
+public class ViewInflator implements ViewCreator {
+    private final LayoutInflater inflater;
+    private final int resId;
+
+    public ViewInflator(LayoutInflater inflater, int resId) {
+        this.inflater = inflater;
+        this.resId = resId;
+    }
+
+    public View createBlankView() {
+        return inflater.inflate(resId, null);
+    }
+
+    public static ViewInflator viewInflatorFor(Context context, int resId) {
+        return new ViewInflator(LayoutInflater.from(context), resId);
+
+    }
+}

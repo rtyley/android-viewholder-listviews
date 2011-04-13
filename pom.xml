@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  ~ Copyright (c) 2011 Roberto Tyley
+  ~
+  ~ This file is part of 'android-viewholder-listviews'.
+  ~
+  ~ android-viewholder-listviews is free software: you can redistribute it and/or modify
+  ~ it under the terms of the GNU General Public License as published by
+  ~ the Free Software Foundation, either version 3 of the License, or
+  ~ (at your option) any later version.
+  ~
+  ~ android-viewholder-listviews is distributed in the hope that it will be useful,
+  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~ GNU General Public License for more details.
+  ~
+  ~ You should have received a copy of the GNU General Public License
+  ~ along with this program.  If not, see <http://www.gnu.org/licenses/>.
+  -->
+
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>org.sonatype.oss</groupId>
+        <artifactId>oss-parent</artifactId>
+        <version>7</version>
+    </parent>
+    <groupId>com.madgag</groupId>
+    <artifactId>android-viewholder-listviews</artifactId>
+    <version>0.1-SNAPSHOT</version>
+    <packaging>jar</packaging>
+    <name>Android ViewHolder ListViews</name>
+    <description>Small library around using the 'ViewHolder' pattern with ListViews</description>
+    <url>https://github.com/rtyley/android-viewholder-listviews</url>
+    <properties>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+	<android.version>2.2.1</android.version>
+    </properties>
+    <licenses>
+        <license>
+            <name>GPL v3</name>
+            <url>http://www.gnu.org/licenses/gpl-3.0.html</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
+    <scm>
+        <connection>scm:git:git@github.com:rtyley/android-viewholder-listviews.git</connection>
+        <developerConnection>scm:git:git@github.com:rtyley/android-viewholder-listviews.git</developerConnection>
+        <url>git@github.com:rtyley/android-viewholder-listviews.git</url>
+    </scm>
+    <developers>
+        <developer>
+            <id>roberto</id>
+            <name>Roberto Tyley</name>
+            <timezone>0</timezone>
+            <url>https://github.com/rtyley</url>
+        </developer>
+    </developers>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>1.5</source>
+                    <target>1.5</target>
+                    <encoding>UTF-8</encoding>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+    <dependencies>
+            <dependency>
+                <groupId>org.hamcrest</groupId>
+                <artifactId>hamcrest-core</artifactId>
+                <version>1.3.RC2</version>
+            </dependency>
+		<dependency>
+		    <groupId>com.google.android</groupId>
+		    <artifactId>android</artifactId>
+		    <scope>provided</scope>
+		    <version>${android.version}</version>
+		</dependency>
+    </dependencies>
+</project>

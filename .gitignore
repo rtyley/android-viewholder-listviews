@@ -1,0 +1,11 @@
+target
+*~
+**pom.xml.releaseBackup
+release.properties
+.classpath
+.project
+.settings
+*.iws
+*.ipr
+*.iml
+
