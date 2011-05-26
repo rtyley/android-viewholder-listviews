@@ -26,14 +26,19 @@ import android.widget.BaseAdapter;
 import java.util.List;
 
 public class ViewHoldingListAdapter<T> extends BaseAdapter {
-	private final ViewCreator creator;
-    private final ViewHolderFactory<T> viewHolderFactory;
-	private List<T> itemList;
 
-	public ViewHoldingListAdapter(List<T> itemList, ViewCreator creator, ViewHolderFactory<T> viewHolderFactory) {
+	private List<T> itemList;
+    private final ViewFactory<T> viewFactory;
+
+
+    public ViewHoldingListAdapter(List<T> itemList, ViewFactory<T> viewFactory) {
 		this.itemList = itemList;
-        this.creator = creator;
-        this.viewHolderFactory = viewHolderFactory;
+        this.viewFactory = viewFactory;
+    }
+
+    public ViewHoldingListAdapter(List<T> itemList, ViewCreator c, ViewHolderFactory<T> vhf) {
+		this.itemList = itemList;
+        this.viewFactory = new ViewFactory<T>(c, vhf);
     }
 
 
@@ -60,14 +65,6 @@ public class ViewHoldingListAdapter<T> extends BaseAdapter {
 	}
 	
 	public View getView(int index, View view, ViewGroup parent) {
-		if (view==null) {
-            view = creator.createBlankView();
-            view.setTag(viewHolderFactory.createViewHolderFor(view));
-        }
-
-		ViewHolder<T> holder = (ViewHolder<T>) view.getTag();
-
-		holder.updateViewFor(itemList.get(index));
-		return view;
+        return viewFactory.getView(view, itemList.get(index));
 	}
 }
