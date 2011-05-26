@@ -27,7 +27,7 @@
     </parent>
     <groupId>com.madgag</groupId>
     <artifactId>android-viewholder-listviews</artifactId>
-    <version>0.3</version>
+    <version>0.4-SNAPSHOT</version>
     <packaging>jar</packaging>
     <name>Android ViewHolder ListViews</name>
     <description>Small library around using the 'ViewHolder' pattern with ListViews</description>
