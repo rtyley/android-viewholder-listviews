@@ -19,7 +19,7 @@ public class FooViewHolder implements ViewHolder<Foo> {
     private final TextView fooName,fooDate;
     private final ImageView icon;
 
-    public fooViewHolder(View v) {
+    public FooViewHolder(View v) {
 	this.avatarSession = avatarSession;
 	fooName = (TextView) v.findViewById(R.id.foo_item_name);
 	fooDate = (TextView) v.findViewById(R.id.foo_item_date);
