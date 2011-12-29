@@ -37,6 +37,12 @@ import java.lang.reflect.Modifier;
  */
 public class ReflectiveHolderFactory<T> implements ViewHolderFactory<T> {
 
+    public static <T> ReflectiveHolderFactory<T> reflectiveFactoryFor(
+            Class<? extends ViewHolder<T>> holderClass,
+            Object... args) {
+        return new ReflectiveHolderFactory<T>(holderClass, args);
+    }
+
 	private static Constructor<?> findMatch(final Class<?> clazz,
 			final Class<?>[] types) {
 		Constructor<?>[] candidates = clazz.getConstructors();
@@ -68,7 +74,7 @@ public class ReflectiveHolderFactory<T> implements ViewHolderFactory<T> {
 	 * @throws RuntimeException
 	 */
 	@SuppressWarnings("unchecked")
-	public ReflectiveHolderFactory(final Class<? extends ViewHolder<T>> holder,
+	private ReflectiveHolderFactory(final Class<? extends ViewHolder<T>> holder,
 			Object... args) {
 		if (args == null)
 			args = new Object[0];

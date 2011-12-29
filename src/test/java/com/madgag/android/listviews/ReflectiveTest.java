@@ -21,6 +21,7 @@
  */
 package com.madgag.android.listviews;
 
+import static com.madgag.android.listviews.ReflectiveHolderFactory.reflectiveFactoryFor;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import android.view.View;
@@ -87,8 +88,8 @@ public class ReflectiveTest {
 	 */
 	@Test
 	public void defaultConstructor() {
-		ReflectiveHolderFactory<String> factory = new ReflectiveHolderFactory<String>(
-				StaticViewHolder.class, (Object[]) null);
+		ReflectiveHolderFactory<String> factory = reflectiveFactoryFor(
+                StaticViewHolder.class, (Object[]) null);
 		ViewHolder<String> holder = factory.createViewHolderFor(null);
 		assertNotNull(holder);
 	}
@@ -98,7 +99,7 @@ public class ReflectiveTest {
 	 */
 	@Test(expected = IllegalArgumentException.class)
 	public void defaultConstructorNonStaticMemberClass() {
-		new ReflectiveHolderFactory<String>(MemberViewHolder.class);
+        reflectiveFactoryFor(MemberViewHolder.class);
 	}
 
 	/**
@@ -106,7 +107,7 @@ public class ReflectiveTest {
 	 */
 	@Test(expected = IllegalArgumentException.class)
 	public void noConstructorMatchMissingParam() {
-		ReflectiveHolderFactory<String> factory = new ReflectiveHolderFactory<String>(
+		ReflectiveHolderFactory<String> factory = reflectiveFactoryFor(
 				StringViewHolder.class);
 		factory.createViewHolderFor(null);
 	}
@@ -116,7 +117,7 @@ public class ReflectiveTest {
 	 */
 	@Test(expected = IllegalArgumentException.class)
 	public void noConstructorMatchInvalidParam() {
-		ReflectiveHolderFactory<String> factory = new ReflectiveHolderFactory<String>(
+		ReflectiveHolderFactory<String> factory = reflectiveFactoryFor(
 				StringViewHolder.class, new Object());
 		factory.createViewHolderFor(null);
 	}
@@ -126,7 +127,7 @@ public class ReflectiveTest {
 	 */
 	@Test
 	public void constructorWithSingleArgument() {
-		ReflectiveHolderFactory<String> factory = new ReflectiveHolderFactory<String>(
+		ReflectiveHolderFactory<String> factory = reflectiveFactoryFor(
 				StringViewHolder.class, "abcd");
 		ViewHolder<String> holder = factory.createViewHolderFor(null);
 		assertNotNull(holder);
@@ -139,7 +140,7 @@ public class ReflectiveTest {
 	 */
 	@Test
 	public void constructorWithMultipleArgument() {
-		ReflectiveHolderFactory<String> factory = new ReflectiveHolderFactory<String>(
+		ReflectiveHolderFactory<String> factory = reflectiveFactoryFor(
 				TwoStringViewHolder.class, "a1", "b2");
 		ViewHolder<String> holder = factory.createViewHolderFor(null);
 		assertNotNull(holder);
