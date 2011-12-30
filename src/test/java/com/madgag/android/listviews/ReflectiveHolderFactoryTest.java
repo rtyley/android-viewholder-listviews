@@ -27,32 +27,29 @@ import org.junit.Test;
  */
 public class ReflectiveHolderFactoryTest {
 
-	private static class StaticViewHolder extends BaseViewHolder<String> {
+	private static class StaticViewHolder implements ViewHolder<String> {
 
 		public StaticViewHolder(View view) {
-			super(view);
 		}
 
 		public void updateViewFor(String item) {
 		}
 	}
 
-	private class MemberViewHolder extends BaseViewHolder<String> {
+	private class MemberViewHolder implements ViewHolder<String> {
 
 		public MemberViewHolder(View view) {
-			super(view);
 		}
 
 		public void updateViewFor(String item) {
 		}
 	}
 
-	private static class StringViewHolder extends BaseViewHolder<String> {
+	private static class StringViewHolder implements ViewHolder<String> {
 
 		final String argument;
 
 		public StringViewHolder(View view, String argument) {
-			super(view);
 			this.argument = argument;
 		}
 
@@ -60,7 +57,7 @@ public class ReflectiveHolderFactoryTest {
 		}
 	}
 
-	private static class TwoStringViewHolder extends BaseViewHolder<String> {
+	private static class TwoStringViewHolder implements ViewHolder<String> {
 
 		final String argument1;
 
@@ -68,7 +65,6 @@ public class ReflectiveHolderFactoryTest {
 
 		public TwoStringViewHolder(View view, String argument1,
 				CharSequence argument2) {
-			super(view);
 			this.argument1 = argument1;
 			this.argument2 = argument2;
 		}
