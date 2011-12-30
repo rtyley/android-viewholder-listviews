@@ -1,5 +1,5 @@
 /*
- * Copyright 2011 Roberto Tyley
+ * Copyright 2011 Kevin Sawicki <kevinsawicki@gmail.com>
  *
  *    Licensed under the Apache License, Version 2.0 (the "License");
  *    you may not use this file except in compliance with the License.
@@ -25,7 +25,7 @@ import org.junit.Test;
 /**
  * Unit tests of {@link ReflectiveHolderFactory}
  */
-public class ReflectiveTest {
+public class ReflectiveHolderFactoryTest {
 
 	private static class StaticViewHolder extends BaseViewHolder<String> {
 
