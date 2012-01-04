@@ -30,12 +30,22 @@ public class ViewFactory<T> {
 
 
     public View getView(View view, T item) {
+        ViewHolder<T> holder;
+
 		if (view==null) {
             view = creator.createBlankView();
-            view.setTag(viewHolderFactory.createViewHolderFor(view));
-        }
+            holder = viewHolderFactory.createViewHolderFor(view);
+            view.setTag(holder);
+        } else {
+            holder = (ViewHolder<T>) view.getTag();
 
-		ViewHolder<T> holder = (ViewHolder<T>) view.getTag();
+            // validate holder is of correct type - could it have been produced by our factory?
+            if (!holder.getClass().equals(viewHolderFactory.getHolderClass())) {
+                view = creator.createBlankView();
+                holder = viewHolderFactory.createViewHolderFor(view);
+                view.setTag(holder);
+            }
+        }
 
 		holder.updateViewFor(item);
 		return view;
