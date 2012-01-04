@@ -32,6 +32,8 @@ import java.lang.reflect.Modifier;
  */
 public class ReflectiveHolderFactory<T> implements ViewHolderFactory<T> {
 
+    private final Class<? extends ViewHolder<T>> holderClass;
+
     public static <T> ReflectiveHolderFactory<T> reflectiveFactoryFor(
             Class<? extends ViewHolder<T>> holderClass,
             Object... args) {
@@ -64,17 +66,18 @@ public class ReflectiveHolderFactory<T> implements ViewHolderFactory<T> {
 	/**
 	 * Create holder factory for constructor and arguments
 	 * 
-	 * @param holder
+	 * @param holderClass
 	 * @param args
 	 * @throws RuntimeException
 	 */
 	@SuppressWarnings("unchecked")
-	private ReflectiveHolderFactory(final Class<? extends ViewHolder<T>> holder,
+	private ReflectiveHolderFactory(final Class<? extends ViewHolder<T>> holderClass,
 			Object... args) {
-		if (args == null)
+        this.holderClass = holderClass;
+        if (args == null)
 			args = new Object[0];
 
-		if (holder.isMemberClass() && !Modifier.isStatic(holder.getModifiers()))
+		if (holderClass.isMemberClass() && !Modifier.isStatic(holderClass.getModifiers()))
 			throw new IllegalArgumentException(
 					"Non-static member classes not supported");
 
@@ -84,7 +87,7 @@ public class ReflectiveHolderFactory<T> implements ViewHolderFactory<T> {
 		for (int i = 0; i < args.length; i++)
 			types[i + 1] = args[i].getClass();
 
-		constructor = (Constructor<? extends ViewHolder<T>>) findMatch(holder,
+		constructor = (Constructor<? extends ViewHolder<T>>) findMatch(holderClass,
 				types);
 		if (constructor == null)
 			throw new IllegalArgumentException(
@@ -105,4 +108,8 @@ public class ReflectiveHolderFactory<T> implements ViewHolderFactory<T> {
 			throw new IllegalArgumentException(e);
 		}
 	}
+
+    public Class<? extends ViewHolder<T>> getHolderClass() {
+        return holderClass;
+    }
 }
