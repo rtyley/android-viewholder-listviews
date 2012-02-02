@@ -49,7 +49,7 @@ public class ReflectiveHolderFactory<T> implements ViewHolderFactory<T> {
 				continue;
 			boolean match = true;
 			for (int i = 0; i < types.length; i++)
-				if (!params[i].isAssignableFrom(types[i])) {
+				if (!isMatch(params[i], types[i])) {
 					match = false;
 					break;
 				}
@@ -57,6 +57,27 @@ public class ReflectiveHolderFactory<T> implements ViewHolderFactory<T> {
 				return candidate;
 		}
 		return null;
+	}
+
+	private static boolean isMatch(Class<?> constructorParam, Class<?> argument) {
+		if (constructorParam.isPrimitive())
+			if (Integer.TYPE.equals(constructorParam))
+				constructorParam = Integer.class;
+			else if (Double.TYPE.equals(constructorParam))
+				constructorParam = Double.class;
+			else if (Short.TYPE.equals(constructorParam))
+				constructorParam = Short.class;
+			else if (Long.TYPE.equals(constructorParam))
+				constructorParam = Long.class;
+			else if (Float.TYPE.equals(constructorParam))
+				constructorParam = Float.class;
+			else if (Byte.TYPE.equals(constructorParam))
+				constructorParam = Byte.class;
+			else if (Character.TYPE.equals(constructorParam))
+				constructorParam = Character.class;
+			else if (Boolean.TYPE.equals(constructorParam))
+				constructorParam = Boolean.class;
+		return constructorParam.isAssignableFrom(argument);
 	}
 
 	private final Constructor<? extends ViewHolder<T>> constructor;
