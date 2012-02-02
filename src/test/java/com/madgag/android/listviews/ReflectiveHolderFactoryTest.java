@@ -57,6 +57,30 @@ public class ReflectiveHolderFactoryTest {
 		}
 	}
 
+	private static class PrimitiveIntHolder implements ViewHolder<String> {
+
+		final int argument;
+
+		public PrimitiveIntHolder(View view, int argument) {
+			this.argument = argument;
+		}
+
+		public void updateViewFor(String item) {
+		}
+	}
+
+	private static class IntegerHolder implements ViewHolder<String> {
+
+		final Integer argument;
+
+		public IntegerHolder(View view, Integer argument) {
+			this.argument = argument;
+		}
+
+		public void updateViewFor(String item) {
+		}
+	}
+
 	private static class TwoStringViewHolder implements ViewHolder<String> {
 
 		final String argument1;
@@ -136,5 +160,29 @@ public class ReflectiveHolderFactoryTest {
 		assertNotNull(holder);
 		assertEquals("a1", ((TwoStringViewHolder) holder).argument1);
 		assertEquals("b2", ((TwoStringViewHolder) holder).argument2);
+	}
+
+	/**
+	 * Create holder for class that takes an int parameter
+	 */
+	@Test
+	public void constructorWithPrimitiveInt() {
+		ReflectiveHolderFactory<String> factory = reflectiveFactoryFor(
+				PrimitiveIntHolder.class, 1);
+		ViewHolder<String> holder = factory.createViewHolderFor(null);
+		assertNotNull(holder);
+		assertEquals(1, ((PrimitiveIntHolder) holder).argument);
+	}
+
+	/**
+	 * Create holder for class that takes an {@link Integer} parameter
+	 */
+	@Test
+	public void constructorWithInteger() {
+		ReflectiveHolderFactory<String> factory = reflectiveFactoryFor(
+				IntegerHolder.class, 1);
+		ViewHolder<String> holder = factory.createViewHolderFor(null);
+		assertNotNull(holder);
+		assertEquals(Integer.valueOf(1), ((IntegerHolder) holder).argument);
 	}
 }
