@@ -104,7 +104,7 @@ public class ReflectiveHolderFactoryTest {
 	public void defaultConstructor() {
 		ReflectiveHolderFactory<String> factory = reflectiveFactoryFor(
                 StaticViewHolder.class, (Object[]) null);
-		ViewHolder<String> holder = factory.createViewHolderFor(null);
+		ViewHolder<String> holder = factory.createViewHolderFor(0,null);
 		assertNotNull(holder);
 	}
 
@@ -123,7 +123,7 @@ public class ReflectiveHolderFactoryTest {
 	public void noConstructorMatchMissingParam() {
 		ReflectiveHolderFactory<String> factory = reflectiveFactoryFor(
 				StringViewHolder.class);
-		factory.createViewHolderFor(null);
+		factory.createViewHolderFor(0,null);
 	}
 
 	/**
@@ -133,7 +133,7 @@ public class ReflectiveHolderFactoryTest {
 	public void noConstructorMatchInvalidParam() {
 		ReflectiveHolderFactory<String> factory = reflectiveFactoryFor(
 				StringViewHolder.class, new Object());
-		factory.createViewHolderFor(null);
+		factory.createViewHolderFor(0,null);
 	}
 
 	/**
@@ -143,7 +143,7 @@ public class ReflectiveHolderFactoryTest {
 	public void constructorWithSingleArgument() {
 		ReflectiveHolderFactory<String> factory = reflectiveFactoryFor(
 				StringViewHolder.class, "abcd");
-		ViewHolder<String> holder = factory.createViewHolderFor(null);
+		ViewHolder<String> holder = factory.createViewHolderFor(0,null);
 		assertNotNull(holder);
 		assertEquals("abcd", ((StringViewHolder) holder).argument);
 	}
@@ -156,7 +156,7 @@ public class ReflectiveHolderFactoryTest {
 	public void constructorWithMultipleArgument() {
 		ReflectiveHolderFactory<String> factory = reflectiveFactoryFor(
 				TwoStringViewHolder.class, "a1", "b2");
-		ViewHolder<String> holder = factory.createViewHolderFor(null);
+		ViewHolder<String> holder = factory.createViewHolderFor(0,null);
 		assertNotNull(holder);
 		assertEquals("a1", ((TwoStringViewHolder) holder).argument1);
 		assertEquals("b2", ((TwoStringViewHolder) holder).argument2);
@@ -169,7 +169,7 @@ public class ReflectiveHolderFactoryTest {
 	public void constructorWithPrimitiveInt() {
 		ReflectiveHolderFactory<String> factory = reflectiveFactoryFor(
 				PrimitiveIntHolder.class, 1);
-		ViewHolder<String> holder = factory.createViewHolderFor(null);
+		ViewHolder<String> holder = factory.createViewHolderFor(0,null);
 		assertNotNull(holder);
 		assertEquals(1, ((PrimitiveIntHolder) holder).argument);
 	}
@@ -181,7 +181,7 @@ public class ReflectiveHolderFactoryTest {
 	public void constructorWithInteger() {
 		ReflectiveHolderFactory<String> factory = reflectiveFactoryFor(
 				IntegerHolder.class, 1);
-		ViewHolder<String> holder = factory.createViewHolderFor(null);
+		ViewHolder<String> holder = factory.createViewHolderFor(0,null);
 		assertNotNull(holder);
 		assertEquals(Integer.valueOf(1), ((IntegerHolder) holder).argument);
 	}

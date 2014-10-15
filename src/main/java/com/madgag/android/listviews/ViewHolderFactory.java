@@ -21,7 +21,7 @@ import android.view.View;
 
 public interface ViewHolderFactory<T> {
 
-    ViewHolder<T> createViewHolderFor(View view);
+    ViewHolder<T> createViewHolderFor(int positionType, View view);
 
-    Class<? extends ViewHolder<T>> getHolderClass();
+    Class<? extends ViewHolder<T>> getHolderClass(int positionType);
 }
