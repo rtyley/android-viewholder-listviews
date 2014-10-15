@@ -30,7 +30,7 @@ public class ViewInflator implements ViewCreator {
         this.resId = resId;
     }
 
-    public View createBlankView() {
+    public View createBlankView(int positionType) {
         return inflater.inflate(resId, null);
     }
 

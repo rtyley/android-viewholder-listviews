@@ -75,7 +75,7 @@ public class ViewHoldingListAdapter<T> extends BaseAdapter {
 	}
 	
 	public View getView(int index, View convertView, ViewGroup parent) {
-        return viewFactory.getView(convertView, itemList.get(index));
+        return viewFactory.getView(index, getItemViewType(index), convertView, itemList.get(index));
 	}
 
     /**
@@ -83,6 +83,6 @@ public class ViewHoldingListAdapter<T> extends BaseAdapter {
      * different views in your drop down vs the 'closed' spinned box.
      */
     public View getDropDownView(int index, View convertView, ViewGroup parent) {
-        return dropDownViewFactory.getView(convertView, itemList.get(index));
+        return dropDownViewFactory.getView(index, getItemViewType(index), convertView, itemList.get(index));
     }
 }

@@ -26,7 +26,7 @@ import java.lang.reflect.Modifier;
  * {@link ViewHolderFactory} that uses reflection to create new
  * {@link ViewHolder} instances with the given parameters that are injected into
  * each {@link ViewHolder} created.
- * 
+ *
  * @param <T>
  *            model class that views are bound to
  */
@@ -86,7 +86,7 @@ public class ReflectiveHolderFactory<T> implements ViewHolderFactory<T> {
 
 	/**
 	 * Create holder factory for constructor and arguments
-	 * 
+	 *
 	 * @param holderClass
 	 * @param args
 	 * @throws RuntimeException
@@ -117,7 +117,7 @@ public class ReflectiveHolderFactory<T> implements ViewHolderFactory<T> {
 		System.arraycopy(args, 0, this.args, 1, args.length);
 	}
 
-	public ViewHolder<T> createViewHolderFor(final View view) {
+	public ViewHolder<T> createViewHolderFor(int positionType, final View view) {
 		try {
 			args[0] = view;
 			return constructor.newInstance(args);
@@ -130,7 +130,7 @@ public class ReflectiveHolderFactory<T> implements ViewHolderFactory<T> {
 		}
 	}
 
-    public Class<? extends ViewHolder<T>> getHolderClass() {
+    public Class<? extends ViewHolder<T>> getHolderClass(int positionType) {
         return holderClass;
     }
 }
